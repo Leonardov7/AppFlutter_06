@@ -8,6 +8,8 @@ class buscar extends StatefulWidget {
 class BuscarApp extends State<buscar> {
   @override
   Widget build(BuildContext context) {
+
+    ///++++++++++++++++++++++++++++
     return Scaffold(
       appBar: AppBar(
         title: Text("Regisgtro de búsqueda"),
