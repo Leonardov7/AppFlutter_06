@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1030214438550",
+    "project_id": "bdgrupo06-d5486",
+    "storage_bucket": "bdgrupo06-d5486.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030214438550:android:fd682e5bc007b79214fcb7",
+        "android_client_info": {
+          "package_name": "com.ebosque.myappmovil_06"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030214438550-4e0f5sepmht2f4ou12q6hh7slhs5n8vh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD47nqFBrPcefQMc2P-iH9lkytZY8meCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030214438550-4e0f5sepmht2f4ou12q6hh7slhs5n8vh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
