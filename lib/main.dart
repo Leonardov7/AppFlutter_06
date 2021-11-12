@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'buscar.dart';
 import 'Shop.dart';
+import 'ShopRegister.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,6 +80,18 @@ class HomeStart extends State<Home> {
                         context, MaterialPageRoute(builder: (_) => Shop()));
                   },
                   child: Text('Listado de tiendas'),
+                ),
+              ),
+              Padding(
+                padding:
+                EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    //print("presionado");
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => ShopRegister()));
+                  },
+                  child: Text('Registro tiendas'),
                 ),
               ),
             ],
