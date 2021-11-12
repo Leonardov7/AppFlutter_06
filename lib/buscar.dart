@@ -4,7 +4,7 @@ class buscar extends StatefulWidget {
   @override
   BuscarApp createState() => BuscarApp();
 }
- //comentario
+
 class BuscarApp extends State<buscar> {
   @override
   Widget build(BuildContext context) {
