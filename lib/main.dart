@@ -91,7 +91,7 @@ class HomeStart extends State<Home> {
                     Navigator.push(
                         context, MaterialPageRoute(builder: (_) => ShopRegister()));
                   },
-                  child: Text('Registro tiendas'),
+                  child: Text('Registrar tienda'),
                 ),
               ),
             ],
