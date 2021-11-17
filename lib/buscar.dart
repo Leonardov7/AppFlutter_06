@@ -12,7 +12,7 @@ class BuscarApp extends State<buscar> {
     ///++++++++++++++++++++++++++++
     return Scaffold(
       appBar: AppBar(
-        title: Text("Regisgtro de búsqueda"),
+        title: Text("Registro de búsqueda"),
       ),
     );
   }
