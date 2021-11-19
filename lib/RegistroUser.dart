@@ -38,7 +38,7 @@ class RegistroUserApp extends State<RegistroUser> {
         appBar: AppBar(
           title: Text("Regisgtro de Usuario"),
         ),
-        body: Padding(
+        body: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
