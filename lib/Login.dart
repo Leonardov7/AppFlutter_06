@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'buscar.dart';
 class Login extends StatefulWidget {
   @override
   LoginApp createState() => LoginApp();
@@ -19,23 +19,35 @@ class LoginApp extends State<Login> {
       QuerySnapshot usuario = await ref.get();
 
       if (usuario.docs.length != 0) {
-        print("flag");
+        //print("flag");
         print(usuario.docs.length);
+        int flag = 0;
         for (var cursor in usuario.docs) {
-          //print(cursor.get("Correo"));
-          if (cursor.get("Correo")==correo.text){
-            if (cursor.get("Password")==pass.text){
+          print(cursor.get("Correo")+ "||"+correo.text);
 
+          if (cursor.get("Correo") == correo.text) {
+            print(cursor.get("Password"));
+            if (cursor.get("Password") == pass.text) {
+              mensaje("Correcto","Usuario correcto");
+              print(cursor.get("nombreUsuario"));
+              flag = 1;
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => buscar()));
             }
           }
+        }
+        print(flag);
+        if (flag == 0) {
+          mensaje("No encotrado","No se encontró el usuario");
         }
       } else {
         print("No hay elementos en la colección ");
       }
-    }catch (e){
-    print (e);
+    } catch (e) {
+      print(e);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     ///++++++++++++++++++++++++++++
@@ -86,6 +98,8 @@ class LoginApp extends State<Login> {
                 style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
                 onPressed: () {
                   validarDatos();
+                 // correo.clear();
+                  //pass.clear();
                 },
                 child: Text("Enviar"),
               ),
@@ -94,5 +108,25 @@ class LoginApp extends State<Login> {
         ),
       ),
     );
+  }
+
+  void mensaje(String titulo, String mess) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title: Text(titulo),
+            content: Text(mess),
+            actions: <Widget>[
+              RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child:
+                    Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),
+              )
+            ],
+          );
+        });
   }
 }
