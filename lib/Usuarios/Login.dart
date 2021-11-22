@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'buscar.dart';
+import '../buscar.dart';
 class Login extends StatefulWidget {
   @override
   LoginApp createState() => LoginApp();
@@ -15,7 +15,7 @@ class LoginApp extends State<Login> {
   validarDatos() async {
     try {
       CollectionReference ref =
-          FirebaseFirestore.instance.collection("Usuarios");
+              FirebaseFirestore.instance.collection("Usuarios");
       QuerySnapshot usuario = await ref.get();
 
       if (usuario.docs.length != 0) {

@@ -38,7 +38,7 @@ class ShopRegisterApp extends State<ShopRegister> {
       appBar: AppBar(
         title: Text("Regisgtro de tiendas"),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
