@@ -31,8 +31,8 @@ class LoginApp extends State<Login> {
               mensaje("Correcto","Usuario correcto");
               print(cursor.get("nombreUsuario"));
               flag = 1;
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => buscar()));
+             // Navigator.push(
+                 // context, MaterialPageRoute(builder: (_) => buscar()));
             }
           }
         }
