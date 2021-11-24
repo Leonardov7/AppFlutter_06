@@ -12,6 +12,7 @@ class RegistroUserApp extends State<RegistroUser> {
   TextEditingController Correo=TextEditingController();
   TextEditingController tele=TextEditingController();
   TextEditingController pass =TextEditingController();
+  TextEditingController direccion=TextEditingController();
   final firebase=FirebaseFirestore.instance;
 
   registrarUsuario() async{
@@ -24,6 +25,7 @@ class RegistroUserApp extends State<RegistroUser> {
         "Correo":Correo.text,
         "Telefono":tele.text,
         "Password":pass.text,
+        "Direccion":direccion.text,
         "Estado":true
       });
     }
@@ -86,6 +88,19 @@ class RegistroUserApp extends State<RegistroUser> {
                 ),
               ),
               Padding(
+                padding: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 0),
+                // PÁGINA WEB
+                child: TextField(
+                  obscureText: true,
+                  controller: direccion,
+                  decoration: InputDecoration(
+                      labelText: "Direccion",
+                      hintText: "Digite Dirección",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                ),
+              ),
+              Padding(
                 padding: EdgeInsets.only(left:15,top: 15,right: 15,bottom: 0),
                 // PÁGINA WEB
                 child: TextField(
@@ -101,6 +116,7 @@ class RegistroUserApp extends State<RegistroUser> {
                   ),
                 ),
               ),
+
               Padding(
                   padding: EdgeInsets.only(left:15,top: 15,right: 15,bottom: 0),
                   child: ElevatedButton(
@@ -110,6 +126,7 @@ class RegistroUserApp extends State<RegistroUser> {
                       Correo.clear();
                       tele.clear();
                       pass.clear();
+                      direccion.clear();
 
                     },
                     child: Text("Registrar"),

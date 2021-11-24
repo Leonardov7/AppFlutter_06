@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'RegistroUser.dart';
 import 'Login.dart';
 import 'CambioPass.dart';
-import 'BajaUsuario.dart';
+import 'ModificarUsuario.dart';
+
+
 class GestionUsuario extends StatefulWidget {
   @override
   GestionUsuarioApp createState() => GestionUsuarioApp();
@@ -64,9 +66,10 @@ class GestionUsuarioApp extends State<GestionUsuario> {
             EdgeInsets.only(top:20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
-              onPressed: (){}
-              ,
-              child:Text("modificar de usuario"),
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_) => ModificarUsuario()));
+              }
+              ,child:Text("modificar de usuario"),
             ),
           ),
           Padding(
