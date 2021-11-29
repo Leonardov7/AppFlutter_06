@@ -69,9 +69,9 @@ class BuscarApp extends State<buscar> {
                         ],
                       ),
                     );
+                  }else {
+                    return new Card();
                   }
-                  return new Card();
-                  ;
                 },
               );
             },

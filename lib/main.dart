@@ -35,6 +35,17 @@ class HomeStart extends State<Home> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Home app grupo 06'),
+            actions: [
+              FloatingActionButton(
+                onPressed: () {
+                 // Navigator.push(context,MaterialPageRoute(builder: (_) => ItemRegister(tiendaId.toString())));
+                },
+                tooltip: 'Agregar producto',
+                child: const Icon(Icons.shopping_cart),
+                //child: Text("add"),
+                backgroundColor: Colors.green,
+              )
+            ]
         ),
         body: SingleChildScrollView(
           child: Column(

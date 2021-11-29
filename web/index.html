@@ -33,6 +33,44 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script type="module">
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+
+  // Your web app's Firebase configuration
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyBK_amVZwP8I6dpobWgDhjLSbpWxU-k0Tg",
+
+    authDomain: "bdgrupo06-d5486.firebaseapp.com",
+
+    projectId: "bdgrupo06-d5486",
+
+    storageBucket: "bdgrupo06-d5486.appspot.com",
+
+    messagingSenderId: "1030214438550",
+
+    appId: "1:1030214438550:web:5d24aba2ab9fba1614fcb7"
+
+  };
+
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+</script>
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
@@ -97,5 +135,7 @@
       loadMainDartJs();
     }
   </script>
+
+
 </body>
 </html>
