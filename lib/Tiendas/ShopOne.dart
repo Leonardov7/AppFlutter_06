@@ -1,29 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:myappmovil_06/Productos/ItemRegister.dart';
+import 'package:myappmovil_06/Usuarios/Login.dart';
+import 'package:myappmovil_06/Usuarios/Token.dart';
+
+import 'Tienda.dart';
 
 class ShopOne extends StatefulWidget {
-  final String DOC_ID;
-  ShopOne(this.DOC_ID);
+  final Tienda objetoTienda;
+  ShopOne(this.objetoTienda);
   @override
   ShopOneApp createState() => ShopOneApp();
 }
 
 //
 class ShopOneApp extends State<ShopOne> {
-  ShopOneApp() {
+  /*ShopOneApp() {
     validarDatos();
     //
-  }
+  }*/
   // String titulo="default";
-  String nombre = "default name";
+  /* String nombre = "default name";
   String descrCorta = "defalut short";
   String descrLarga = "default long";
   String logo = "logo.png";
-  String tiendaId = "";
-  final firebase=FirebaseFirestore.instance;
+  String tiendaId = "";*/
+  String idUser = "";
+  final firebase = FirebaseFirestore.instance;
 
-  validarDatos() async {
+  /* validarDatos() async {
     try {
       CollectionReference ref =
           FirebaseFirestore.instance.collection("Tiendas");
@@ -48,22 +53,19 @@ class ShopOneApp extends State<ShopOne> {
       print(e);
     }
   }
-  registrarCarrito(String idTienda,String idUsuario,String idProducto) async{
-    try{
-      await firebase
-          .collection("Carrito")
-          .doc()
-          .set({
-        "UserId":idUsuario,
-        "ShopId":idTienda,
-        "ItemId":idProducto,
-
+*/
+  registrarCarrito(String idTienda, String idUsuario, String idProducto) async {
+    try {
+      await firebase.collection("Carrito").doc().set({
+        "UserId": idUsuario,
+        "ShopId": idTienda,
+        "ItemId": idProducto,
       });
-    }
-    catch (e){
+    } catch (e) {
       print(e);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
@@ -79,14 +81,14 @@ class ShopOneApp extends State<ShopOne> {
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    this.nombre,
+                    widget.objetoTienda.nombre,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Text(
-                  this.descrCorta,
+                  widget.objetoTienda.descripcion,
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
@@ -120,21 +122,22 @@ class ShopOneApp extends State<ShopOne> {
     Widget textSection = Container(
       padding: const EdgeInsets.all(32),
       child: Text(
-        descrLarga,
+        widget.objetoTienda.descripcion,
         softWrap: true,
       ),
     );
 
     return MaterialApp(
-      title: this.nombre,
+      title: widget.objetoTienda.nombre,
       home: Scaffold(
-          appBar: AppBar(title: Text(this.nombre), actions: [
+          appBar: AppBar(title: Text(widget.objetoTienda.nombre), actions: [
             FloatingActionButton(
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (_) => ItemRegister(tiendaId.toString())));
+                        builder: (_) =>
+                            ItemRegister(widget.objetoTienda.idTienda)));
               },
               tooltip: 'Agregar producto',
               child: const Icon(Icons.add_box),
@@ -148,7 +151,7 @@ class ShopOneApp extends State<ShopOne> {
                 child: ListView(
                   children: [
                     Image.asset(
-                      'image/' + logo,
+                      'image/' + widget.objetoTienda.imagen,
                       width: 600,
                       height: 240,
                       fit: BoxFit.cover,
@@ -171,11 +174,11 @@ class ShopOneApp extends State<ShopOne> {
                       itemCount:
                           snapshot.data!.docs.length, // define las iteraciones
                       itemBuilder: (BuildContext context, int index) {
-                        print(snapshot.data!.docs[index].id +
-                            " - " +
-                            this.tiendaId);
+                        //print(snapshot.data!.docs[index].id +
+                        //   " - " +
+                        //  widget.objetoTienda.idTienda);
                         if (snapshot.data!.docs[index].get("TiendaId") ==
-                            this.tiendaId) {
+                            widget.objetoTienda.idTienda) {
                           return new Card(
                             child: new Column(
                               children: <Widget>[
@@ -209,23 +212,30 @@ class ShopOneApp extends State<ShopOne> {
                                         child: Image.asset(
                                             'image/' /*+snapshot.data!.docs[index].get("ruta")*/),
                                       ),
-                                     FloatingActionButton(
-                                       onPressed:(){
-                                              registrarCarrito(this.tiendaId,"idUsario",(snapshot.data!.docs[index].id));
-                                       },
-                                       child: const Icon(Icons.add_shopping_cart),
-                                       backgroundColor: Colors.blueGrey,
-                                       tooltip:'Agregar al carrito'
-
-                                     ),
                                       FloatingActionButton(
-                                          onPressed:(){},
-                                         // child: const Icon(Icons.add_shopping_cart),
-                                          child:Text("Ver"),
+                                          onPressed: () async {
+                                            Token tk = new Token();
+                                            String idUser = await tk.validarToken();
+                                            print(idUser);
+                                            if (idUser == "vacio") {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) => Login()));
+                                            }
+                                          },
+                                          heroTag:null,
+                                          child: const Icon(
+                                              Icons.add_shopping_cart),
+                                          backgroundColor: Colors.blueGrey,
+                                          tooltip: 'Agregar al carrito'),
+                                      FloatingActionButton(
+                                          onPressed: () {},
+                                          // child: const Icon(Icons.add_shopping_cart),
+                                          child: Text("Ver"),
+                                          heroTag:null,
                                           backgroundColor: Colors.blue,
-                                          tooltip:'Agregar al carrito'
-
-                                      )
+                                          tooltip: 'Ver producto')
                                     ],
                                   ),
                                 )

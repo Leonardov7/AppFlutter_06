@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../buscar.dart';
+import 'Token.dart';
 class Login extends StatefulWidget {
   @override
   LoginApp createState() => LoginApp();
@@ -28,11 +29,12 @@ class LoginApp extends State<Login> {
           if (cursor.get("Correo") == correo.text) {
             print(cursor.get("Password"));
             if (cursor.get("Password") == pass.text) {
-              mensaje("Correcto","Usuario correcto");
+             // mensaje("Correcto","Usuario correcto");
               print(cursor.get("nombreUsuario"));
               flag = 1;
-             // Navigator.push(
-                 // context, MaterialPageRoute(builder: (_) => buscar()));
+              Token tk=new Token();
+              tk.guardarToken(cursor.id.toString());
+              Navigator.of(context).pop();
             }
           }
         }

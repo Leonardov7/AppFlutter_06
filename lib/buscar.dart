@@ -62,7 +62,7 @@ class BuscarApp extends State<buscar> {
                               ),
                               ElevatedButton(
                                   onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (_) => ShopOne(snapshot.data!.docs[index].id)));
+                                 //   Navigator.push(context, MaterialPageRoute(builder: (_) => ShopOne(snapshot.data!.docs[index].id)));
                                   }, child: Text('Entrar'))
                             ]),
                           )
