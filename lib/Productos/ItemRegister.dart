@@ -8,14 +8,12 @@ class ItemRegister extends StatefulWidget {
   @override
   ItemRegisterApp createState() => ItemRegisterApp();
 }
-//
+
 class ItemRegisterApp extends State<ItemRegister> {
   @override
   TextEditingController nombre =TextEditingController();
   TextEditingController precio=TextEditingController();
   TextEditingController descripcion=TextEditingController();
-
-
   final firebase=FirebaseFirestore.instance;
 
   registrarProducto() async{
@@ -25,7 +23,7 @@ class ItemRegisterApp extends State<ItemRegister> {
           .doc()
           .set({
         "Nombre":nombre.text,
-        "Precio":precio.text,
+        "Precio":double.parse(precio.text),
         "Descripcion":descripcion.text,
         "TiendaId":widget.idTienda,
         "Estado":true
