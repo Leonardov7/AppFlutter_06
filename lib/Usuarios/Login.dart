@@ -33,6 +33,15 @@ class LoginApp extends State<Login> {
               print(cursor.get("nombreUsuario"));
               flag = 1;
               Token tk=new Token();
+              String idToken=await tk.validarToken("Login");
+              if(idToken!=0){
+                final firebase=FirebaseFirestore.instance;
+                try{
+firebase.collection("Tokens").doc(idToken).delete();
+                }catch (e){
+                  print(e);
+                }
+              }
               tk.guardarToken(cursor.id.toString());
               Navigator.of(context).pop();
             }

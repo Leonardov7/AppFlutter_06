@@ -65,7 +65,9 @@ class ShopOneApp extends State<ShopOne> {
         "NombreItem":cart.nombreItem,
         "Descripcion":cart.descripocionItem,
         "Cantidad":cart.cantidad,
-        "total":cart.total
+        "total":cart.total,
+
+
 
       });
     } catch (e) {
@@ -223,7 +225,7 @@ class ShopOneApp extends State<ShopOne> {
                                       FloatingActionButton(
                                           onPressed: () async {
                                             Token tk = new Token();
-                                            String idUser = await tk.validarToken();
+                                            String idUser = await tk.validarToken("");
                                             print(idUser);
                                             if (idUser == "vacio") {
                                               Navigator.push(
@@ -239,6 +241,7 @@ class ShopOneApp extends State<ShopOne> {
                                                 cart.idUser=idUser;
                                                 cart.nombreItem=snapshot.data!.docs[index].get("Nombre");
                                                 cart.nombreTienda=widget.objetoTienda.nombre;
+                                               // cart.
 
                                                 mensaje("Carrito", "¿Desea agregar al carrito? Digite la cantidad",cart);
 
@@ -325,7 +328,8 @@ class ShopOneApp extends State<ShopOne> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => ShoppingCart()));
+                          builder: (_) => ShoppingCart(cart.idUser)));
+
                 },
                 child:
                 Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),
